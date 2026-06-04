@@ -22,18 +22,37 @@
 [![License](https://img.shields.io/badge/License-MIT-2D3748?style=flat-square)](https://pypi.org/project/civix/)
 [![Status](https://img.shields.io/badge/status-beta-E67E22?style=flat-square)](https://pypi.org/project/civix/)
 
-**Civix** is a structural-engineering design library for Python where **Jupyter notebooks are the deliverable** — living calculation documents suitable for engineering review and submission.
+**Civix** is a structural-engineering design library for Python where **Jupyter notebooks are the deliverable** — living calculation documents suitable for engineering review and submission. Built on a two-layer architecture that separates pure, testable calculation functions from the Jupyter/Quarto rendered output.
 
 - 🧮 **`civix.display`** — self-rendering PASS/FAIL check cards, headers, and input tables, live inside a running notebook.
 - 📄 **`civix.report`** — scaffolds a Quarto project and renders calculation notebooks to **PDF / HTML / docx**.
-
-> Currently in its **foundation cycle**: the calculation, display, and Quarto export infrastructure is in place. Structural-domain modules (design codes, elements, materials) arrive in later cycles.
 
 ```bash
 pip install civix
 ```
 
 🔗 **[View on PyPI →](https://pypi.org/project/civix/)**
+
+---
+
+## 🔭 Currently Building
+
+Civix is in its **foundation cycle** — the calculation, notebook-display, and Quarto export infrastructure is in place. Next up: code-specific design modules targeting **ACI 318-25**, **ASCE 7**, and **IBC**, plus a library of submission-ready calculation templates for daily structural practice across the MENA region.
+
+---
+
+## 🏗️ Selected Work
+
+A sample of structural engineering projects I've led or contributed to across Saudi Arabia:
+
+| Project | Sector | Scale & Highlights |
+| --- | --- | --- |
+| **King Abdulaziz International Airport** | Aviation | 810,000 m²; long-span roof & seismic design to American + Saudi codes; BIM-based delivery. *Client: General Authority of Civil Aviation* |
+| **Almarai CPP3 — Central Processing Plant** | Industrial | 68,000 m² steel + RC complex (cold store, production, admin); detailed design models & calculation reports. *Client: Almarai* |
+| **National Guard Housing** | Residential | 400 villas plus schools, mosques & community facilities over 800,000 m². *Client: Saudi Arabian National Guard* |
+| **Al Rofan Plaza** | Commercial | 25,000 m² office building; 3 basements + 12 floors, Jeddah |
+| **Al Faysaliyah Mixing Chamber** | Water infrastructure | Potable-water flow-capacity expansion for SWCC desalination supply. *Client: National Water Company* |
+| **North Jeddah Wastewater Pumping Station** | Water infrastructure | Deep shafts up to 40 m diameter × 70 m below grade. *Client: National Water Company* |
 
 ---
 
@@ -93,11 +112,13 @@ pip install civix
 
 ---
 
-## 📊 GitHub Stats
+## 📊 Activity & Metrics
 
-![](https://github-readme-stats.vercel.app/api?username=mohamadalitellawi&theme=nightowl&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=mohamadalitellawi&theme=nightowl&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=mohamadalitellawi&theme=nightowl&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+<p align="center">
+  <img src="github-metrics.svg" alt="GitHub metrics">
+</p>
+
+> Generated daily by a GitHub Action (`lowlighter/metrics`) and committed to this repo, so it stays reliable and reflects **private** contributions and **achievements** (Pull Shark, Quickdraw, …) too. See `.github/workflows/metrics.yml`.
 
 ---
 

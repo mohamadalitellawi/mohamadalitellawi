@@ -1,0 +1,64 @@
+# .github/workflows/metrics.yml
+#
+# Generates github-metrics.svg at the repo root using lowlighter/metrics,
+# then commits it. The profile README references it as:
+#     <img src="github-metrics.svg" ...>
+#
+# ── One-time setup ────────────────────────────────────────────────────────────
+#   1. Create a Personal Access Token (classic):
+#        GitHub → Settings → Developer settings →
+#        Personal access tokens (classic) → Generate new token (classic).
+#        Scopes: `repo`       (so PRIVATE repos/contributions are counted)
+#                `read:user`
+#   2. Add it as a repo secret:
+#        This repo → Settings → Secrets and variables → Actions →
+#        New repository secret → Name: METRICS_TOKEN → paste the token.
+#   3. Commit this file, then run it once: Actions tab → Metrics → Run workflow.
+#      The first run commits github-metrics.svg; after that the README image
+#      resolves. (Until that first run, the image will show as broken.)
+# ──────────────────────────────────────────────────────────────────────────────
+
+name: Metrics
+
+on:
+  schedule:
+    - cron: "0 3 * * *"        # daily at 03:00 UTC (06:00 Asia/Riyadh)
+  workflow_dispatch:            # manual trigger from the Actions tab
+  push:
+    branches: [main]
+
+permissions:
+  contents: write               # allow the action to commit the generated SVG
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate metrics
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: mohamadalitellawi
+          filename: github-metrics.svg
+          template: classic
+          config_timezone: Asia/Riyadh
+
+          # Panels: profile header, recent activity, community stats,
+          # repository totals (stars/forks), and account metadata.
+          base: header, activity, community, repositories, metadata
+
+          # Include private repos/contributions in the stats (needs `repo` scope).
+          repositories_affiliations: owner, collaborator, organization_member
+
+          # Most-used languages across your repositories.
+          plugin_languages: yes
+          plugin_languages_limit: 8
+          plugin_languages_sections: most-used
+
+          # GitHub achievements (Pull Shark, Quickdraw, YOLO, etc.).
+          # Renders via Action-side scraping — works because this runs as a
+          # GitHub Action, not a web instance.
+          plugin_achievements: yes
+          plugin_achievements_display: compact      # icon + name + value
+          plugin_achievements_threshold: C          # show all unlocked ranks
+          plugin_achievements_secrets: yes          # include secret ones (YOLO, Quickdraw)
